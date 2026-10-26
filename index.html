@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Оливия — демо сайта и приложения</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Manrope:wght@400;500;600;700;800&display=swap">
+<style>
+/* Layout: тёмная демо-панель; «Сайт» — полноэкранный журнальный лендинг на фото; «MAX» — телефон с живыми экранами */
+:root{
+  --olive:#2F3B26; --olive-2:#4F6340; --sage:#A9BF94; --brass:#C9A46E; --brass-2:#E2C9A6;
+  --ink:#16170F; --paper:#F6F2EA; --card:#FFFFFF; --muted:#5E5B51; --line:#E2DBCC; --bg:#EAE5DB;
+  --night:#121410; --on-dark:#F4EFE4;
+  --display:'Cormorant Garamond', Georgia, serif;
+  --body:'Manrope', 'Segoe UI', Arial, sans-serif;
+  --hero:url(https://images.unsplash.com/photo-1512916194211-3f2b7f5f7de3?w=1800&q=70&auto=format&fit=crop); --modern:url(https://images.unsplash.com/photo-1610177534644-34d881503b83?w=900&q=70&auto=format&fit=crop); --classic:url(https://images.unsplash.com/photo-1617228069096-4638a7ffc906?w=900&q=70&auto=format&fit=crop); --loft:url(https://images.unsplash.com/photo-1759147960461-b74a7e9a75d4?w=900&q=70&auto=format&fit=crop);
+  --w1:url(https://images.unsplash.com/photo-1502005097973-6a7082348e28?w=900&q=70&auto=format&fit=crop); --w2:url(https://images.unsplash.com/photo-1628797285815-453c1d0d21e3?w=900&q=70&auto=format&fit=crop); --w3:url(https://images.unsplash.com/photo-1632119580908-ae947d4c7691?w=900&q=70&auto=format&fit=crop); --w4:url(https://images.unsplash.com/photo-1631510083755-11ecb5172d81?w=900&q=70&auto=format&fit=crop); --w5:url(https://images.unsplash.com/photo-1683629357963-adf2b1fa9ad9?w=900&q=70&auto=format&fit=crop);
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--paper:#171914;--card:#20231C;--ink:#EEE9DD;--muted:#B5AF9F;--line:#33372D;--bg:#0E100C;--olive-2:#A9BF94;color-scheme:dark}}
+:root[data-theme="dark"]{--paper:#171914;--card:#20231C;--ink:#EEE9DD;--muted:#B5AF9F;--line:#33372D;--bg:#0E100C;--olive-2:#A9BF94;color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px));padding-block:0 40px}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--night)}
+h1,h2,h3{margin:0;text-wrap:balance}
+p{margin:0} ul{list-style:none;margin:0;padding:0}
+a{color:inherit}
+button{font:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--brass);outline-offset:3px}
+
+.demobar{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;margin:0 calc(-1*max(16px, env(safe-area-inset-left, 0px))) 20px;
+  padding:10px max(16px, env(safe-area-inset-left, 0px));background:var(--night);color:var(--on-dark);display:flex;flex-wrap:wrap;gap:10px 20px;align-items:center;justify-content:space-between}
+.demobar .tag{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--brass-2);font-weight:700}
+.tabs{display:flex;gap:4px;background:#22251E;padding:4px;border-radius:999px}
+.tabs button{border:0;background:transparent;color:#CFC8B8;padding:10px 18px;border-radius:999px;font-weight:700;font-size:14px;min-height:44px;transition:background .25s,color .25s}
+.tabs button[aria-selected="true"]{background:var(--brass);color:#16170F}
+.demobar .note{font-size:12px;color:#9E998B}
+
+/* ====== SITE ====== */
+.site{max-width:1280px;margin:0 auto;background:var(--paper);border-radius:22px;overflow:hidden;box-shadow:0 40px 80px rgba(10,12,8,.22)}
+.hero{position:relative;min-height:640px;color:var(--on-dark);display:flex;flex-direction:column;isolation:isolate;overflow:hidden}
+.hero .bg{position:absolute;inset:0;background:var(--hero) center/cover;z-index:-2;animation:kb 18s ease-out both}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(14,16,11,.88) 0%,rgba(14,16,11,.55) 48%,rgba(14,16,11,.15) 100%)}
+@keyframes kb{from{transform:scale(1.15)}to{transform:scale(1)}}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:22px clamp(18px,4vw,56px);flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:12px;font-family:var(--display);font-weight:600;font-size:28px;letter-spacing:.24em}
+.links{display:flex;gap:26px;font-size:14px;font-weight:600}
+.links a{text-decoration:none;opacity:.85;position:relative}
+.links a::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;background:var(--brass);transform:scaleX(0);transition:transform .3s;transform-origin:left}
+.links a:hover::after{transform:scaleX(1)}
+.tel{font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:.02em}
+.hero-in{flex:1;display:flex;flex-direction:column;justify-content:center;gap:28px;padding:20px clamp(18px,4vw,56px) 56px;max-width:760px}
+.kicker{display:inline-flex;align-items:center;gap:12px;font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:var(--brass-2)}
+.kicker::before{content:"";width:34px;height:1px;background:var(--brass)}
+.hero h1{font-family:var(--display);font-weight:500;font-size:clamp(46px,7vw,96px);line-height:.95;letter-spacing:-.01em}
+.hero h1 em{font-style:italic;color:var(--brass-2)}
+.hero h1 .ln{display:block;overflow:hidden}
+.hero h1 .ln span{display:block;animation:up 1s cubic-bezier(.2,.8,.2,1) both}
+.hero h1 .ln:nth-child(2) span{animation-delay:.12s}.hero h1 .ln:nth-child(3) span{animation-delay:.24s}
+@keyframes up{from{transform:translateY(105%)}to{transform:none}}
+.hero .lead{font-size:18px;max-width:46ch;color:#DCD6C8;animation:fade 1s .5s both}
+@keyframes fade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.ctas{display:flex;gap:12px;flex-wrap:wrap;animation:fade 1s .7s both}
+.btn{display:inline-flex;align-items:center;gap:10px;justify-content:center;min-height:52px;padding:0 26px;border-radius:999px;border:0;font-weight:800;font-size:15px;text-decoration:none;transition:transform .25s, box-shadow .25s, background .25s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 14px 28px rgba(0,0,0,.25)}
+.btn .arr{transition:transform .25s}.btn:hover .arr{transform:translateX(4px)}
+.b-brass{background:var(--brass);color:#16170F}
+.b-glass{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.35);backdrop-filter:blur(8px)}
+.b-olive{background:var(--olive);color:#F4EFE4}
+.badges{display:flex;gap:10px;flex-wrap:wrap;animation:fade 1s .9s both}
+.badges span{font-size:13px;font-weight:600;padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22)}
+
+.ticker{background:var(--olive);color:var(--on-dark);overflow:hidden;white-space:nowrap;padding:16px 0}
+.ticker div{display:inline-flex;gap:48px;animation:tick 28s linear infinite;padding-left:48px;font-family:var(--display);font-size:24px;font-style:italic}
+.ticker b{color:var(--brass);font-style:normal}
+@keyframes tick{to{transform:translateX(-50%)}}
+
+.sec{padding:88px clamp(18px,4vw,56px) 0}
+.head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:34px}
+.eb{font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:800;color:var(--olive-2)}
+.sec h2{font-family:var(--display);font-weight:500;font-size:clamp(36px,4.6vw,60px);line-height:1;margin-top:10px}
+.sec h2 em{font-style:italic;color:var(--olive-2)}
+.head p{max-width:40ch;color:var(--muted)}
+
+.styles{display:grid;grid-template-columns:1.25fr 1fr 1fr;gap:18px}
+.sty{position:relative;min-height:440px;border-radius:18px;overflow:hidden;color:#fff;display:flex;flex-direction:column;justify-content:flex-end;padding:24px;isolation:isolate;text-decoration:none}
+.sty .ph{position:absolute;inset:0;background-size:cover;background-position:center;z-index:-2;transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+.sty::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(transparent 40%,rgba(10,12,8,.85))}
+.sty:hover .ph{transform:scale(1.07)}
+.sty h3{font-family:var(--display);font-size:38px;font-weight:500;line-height:1}
+.sty .meta{display:flex;justify-content:space-between;align-items:center;margin-top:12px;font-size:14px}
+.sty .go{width:44px;height:44px;border-radius:50%;background:var(--brass);color:#16170F;display:flex;align-items:center;justify-content:center;font-weight:800;transition:transform .3s}
+.sty:hover .go{transform:rotate(-45deg)}
+
+.about{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.about .pic{border-radius:18px;min-height:460px;background:var(--w2) center/cover;position:relative}
+.about .stamp{position:absolute;right:-14px;bottom:28px;background:var(--brass);color:#16170F;border-radius:14px;padding:18px 20px;font-weight:800;max-width:220px;box-shadow:0 18px 30px rgba(0,0,0,.2)}
+.about .stamp small{display:block;font-weight:600;font-size:12px}
+.facts{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:26px}
+.facts div{border:1px solid var(--line);border-radius:14px;padding:18px;background:var(--card)}
+.facts b{display:block;font-family:var(--display);font-size:30px;font-weight:600;color:var(--olive-2);line-height:1.1}
+.facts span{font-size:14px;color:var(--muted)}
+
+.timeline{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:16px;position:relative}
+.timeline::before{content:"";position:absolute;left:24px;right:24px;top:24px;height:2px;background:linear-gradient(90deg,var(--olive),var(--brass))}
+.tl{position:relative;display:flex;flex-direction:column;gap:10px}
+.tl .n{width:50px;height:50px;border-radius:50%;background:var(--paper);border:2px solid var(--olive);color:var(--olive-2);font-weight:800;display:flex;align-items:center;justify-content:center;transition:background .3s,color .3s}
+.tl:hover .n{background:var(--olive);color:#F4EFE4}
+.tl h3{font-size:16px;font-weight:800}
+.tl p{font-size:14px;color:var(--muted)}
+
+.gallery{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:230px;gap:14px}
+.g{border-radius:16px;overflow:hidden;position:relative;margin:0}
+.g .ph{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .8s}
+.g:hover .ph{transform:scale(1.06)}
+.g figcaption{position:absolute;left:12px;bottom:12px;right:12px;background:rgba(246,242,234,.92);color:#16170F;border-radius:12px;padding:10px 14px;font-size:13px;transform:translateY(8px);opacity:.96;transition:transform .3s}
+.g:hover figcaption{transform:none}
+.g figcaption b{display:block;font-size:14px}
+.g.tall{grid-row:span 2}.g.wide{grid-column:span 2}
+
+.reviews{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.rv{background:var(--card);border:1px dashed var(--line);border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:12px;color:var(--muted);font-size:15px}
+.rv .q{font-family:var(--display);font-size:56px;line-height:.6;color:var(--brass)}
+.rv b{color:var(--ink)}
+
+.promo{margin-top:0;display:grid;grid-template-columns:1.3fr 1fr;gap:18px}
+.pr{border-radius:18px;padding:34px;min-height:240px;display:flex;flex-direction:column;justify-content:space-between;gap:20px;position:relative;overflow:hidden}
+.pr h3{font-family:var(--display);font-size:42px;font-weight:500;line-height:1}
+.pr.a{background:var(--night);color:var(--on-dark)}
+.pr.a::after{content:"";position:absolute;right:-60px;top:-60px;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(201,164,110,.45),transparent 70%)}
+.pr.b{background:var(--brass);color:#16170F}
+.pct{font-family:var(--display);font-size:64px;line-height:1;color:var(--brass-2)}
+
+.cta{margin:88px clamp(18px,4vw,56px) 0;border-radius:22px;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;background:var(--olive);color:var(--on-dark)}
+.cta .l{padding:clamp(24px,4vw,52px);display:flex;flex-direction:column;gap:18px}
+.cta h2{font-family:var(--display);font-weight:500;font-size:clamp(36px,4vw,56px);line-height:1}
+.cta .r{background:var(--w4) center/cover;min-height:320px}
+.form{display:grid;gap:12px;margin-top:6px}
+.form label{display:grid;gap:6px;font-size:13px;font-weight:700;color:#DCE3D2}
+.form input{min-height:52px;border-radius:12px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.08);color:#fff;padding:0 16px;font:inherit}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips button{border:1px solid rgba(255,255,255,.3);background:transparent;color:#F4EFE4;border-radius:999px;padding:8px 16px;min-height:42px;font-size:14px;font-weight:600;transition:background .2s}
+.chips button[aria-pressed="true"]{background:var(--brass);color:#16170F;border-color:var(--brass)}
+.ok{background:rgba(255,255,255,.12);border-radius:12px;padding:14px;font-size:14px;animation:fade .5s both}
+.foot{margin-top:88px;background:var(--night);color:#BDB7A8;padding:44px clamp(18px,4vw,56px);display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:28px;font-size:14px}
+.foot b{color:#F4EFE4;display:block;margin-bottom:8px}
+.foot .big{font-family:var(--display);font-size:34px;color:#F4EFE4;letter-spacing:.2em}
+.mess{display:flex;gap:8px;flex-wrap:wrap}
+.mess span{border:1px solid #3C4035;border-radius:999px;padding:8px 14px;color:#F4EFE4;font-weight:600}
+
+@supports (animation-timeline: view()){
+  .rv-in{animation:fade linear both;animation-timeline:view();animation-range:entry 0% cover 20%}
+}
+
+/* ====== APP ====== */
+.appview{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:56px;align-items:center;max-width:1120px;margin:0 auto;padding:12px 0}
+.appintro h2{font-family:var(--display);font-weight:500;font-size:clamp(40px,5vw,68px);line-height:.98;margin:12px 0 18px}
+.appintro h2 em{font-style:italic;color:var(--olive-2)}
+.appintro p{color:var(--muted);max-width:48ch;font-size:17px}
+.feat{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:26px}
+.feat div{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;font-size:14px}
+.feat b{display:block;font-size:15px}
+.device{width:min(390px,100%);aspect-ratio:9/19.3;background:#0E0F0B;border-radius:54px;padding:12px;box-shadow:0 50px 90px rgba(0,0,0,.35),inset 0 0 0 2px #2A2C25;position:relative}
+.device::before{content:"";position:absolute;top:22px;left:50%;transform:translateX(-50%);width:110px;height:28px;border-radius:20px;background:#0E0F0B;z-index:3}
+.screen{position:relative;width:100%;height:100%;background:var(--paper);border-radius:42px;overflow:hidden;display:flex;flex-direction:column}
+.abar{display:flex;align-items:center;gap:10px;padding:58px 16px 12px;background:var(--card);border-bottom:1px solid var(--line)}
+.abar .av{width:36px;height:36px;border-radius:50%;background:var(--olive);display:flex;align-items:center;justify-content:center;flex:none}
+.abar b{font-size:14px;display:block;line-height:1.2}
+.abar small{font-size:11px;color:var(--olive-2);font-weight:700}
+.back{border:0;background:var(--paper);color:var(--ink);width:36px;height:36px;border-radius:50%;font-size:20px;line-height:1;flex:none}
+.pages{flex:1;position:relative;overflow:hidden}
+.page{position:absolute;inset:0;overflow:auto;padding:14px;display:flex;flex-direction:column;gap:12px;transition:transform .45s cubic-bezier(.2,.8,.2,1),opacity .35s}
+.page[data-off]{transform:translateX(40px);opacity:0;pointer-events:none}
+.ahero{border-radius:20px;min-height:150px;flex:none;background:linear-gradient(rgba(14,16,11,.1),rgba(14,16,11,.8)),var(--hero) center/cover;color:#fff;padding:18px;display:flex;flex-direction:column;justify-content:flex-end;gap:8px}
+.ahero h3{font-family:var(--display);font-size:24px;font-weight:500;line-height:1}
+.pill{align-self:flex-start;background:var(--brass);color:#16170F;font-size:10px;font-weight:800;padding:5px 10px;border-radius:999px;letter-spacing:.06em}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tile{border:0;border-radius:18px;padding:12px;min-height:86px;text-align:left;display:flex;flex-direction:column;justify-content:space-between;font-weight:800;font-size:15px;transition:transform .2s;position:relative;overflow:hidden;color:#fff}
+.tile:active{transform:scale(.96)}
+.tile small{font-weight:700;font-size:10px;letter-spacing:.12em;opacity:.85}
+.tile.ph{background-size:cover;background-position:center}
+.tile.ph::before{content:"";position:absolute;inset:0;background:linear-gradient(transparent,rgba(10,12,8,.75))}
+.tile > *{position:relative}
+.t-brass{background:var(--brass);color:#16170F}
+.acard{border-radius:16px;overflow:hidden;position:relative;min-height:150px;background-size:cover;background-position:center;color:#fff;display:flex;flex-direction:column;justify-content:flex-end;padding:12px;flex:none}
+.acard::before{content:"";position:absolute;inset:0;background:linear-gradient(transparent 35%,rgba(10,12,8,.8))}
+.acard > *{position:relative}
+.acard b{font-size:16px}
+.acard span{font-size:12px;opacity:.9}
+.abtn{border:0;min-height:52px;border-radius:999px;background:var(--olive);color:#F4EFE4;font-weight:800;font-size:15px;flex:none}
+.prm{border-radius:16px;padding:16px;flex:none}
+.prm h4{font-family:var(--display);font-size:26px;font-weight:500;margin:0}
+.prm.a{background:var(--night);color:#F4EFE4}.prm.b{background:var(--brass);color:#16170F}
+.field{display:grid;gap:6px;font-size:12px;font-weight:700}
+.field input{min-height:46px;border:1px solid var(--line);border-radius:12px;padding:0 12px;font:inherit;font-size:14px;background:var(--card);color:var(--ink)}
+.page .chips button{border-color:var(--line);color:var(--ink)}
+.page .chips button[aria-pressed="true"]{background:var(--olive);color:#F4EFE4;border-color:var(--olive)}
+.done{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:12px}
+.check{width:84px;height:84px;border-radius:50%;background:var(--olive);display:flex;align-items:center;justify-content:center;animation:pop .6s cubic-bezier(.2,1.6,.4,1) both;box-shadow:0 0 0 10px rgba(79,99,64,.15)}
+@keyframes pop{from{transform:scale(.2)}to{transform:scale(1)}}
+.tabbar{display:flex;justify-content:space-around;border-top:1px solid var(--line);background:var(--card);padding:8px 6px 20px}
+.tabbar button{border:0;background:transparent;color:var(--muted);font-size:11px;font-weight:700;display:flex;flex-direction:column;align-items:center;gap:3px;min-width:58px;min-height:44px;padding-top:4px;border-radius:12px;transition:color .2s}
+.tabbar button[aria-current="page"]{color:var(--olive-2)}
+.tabbar svg{width:22px;height:22px}
+
+@media (max-width:900px){
+  .hero{min-height:560px}.links{display:none}
+  .styles,.about,.promo,.cta,.appview,.reviews{grid-template-columns:1fr}
+  .sty{min-height:320px}
+  .timeline{grid-template-columns:1fr 1fr}.timeline::before{display:none}
+  .gallery{grid-template-columns:1fr 1fr;grid-auto-rows:170px}
+  .g.wide{grid-column:span 2}
+  .foot{grid-template-columns:1fr}
+  .about .stamp{right:12px}
+  .device{margin:0 auto}
+}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head><body>
+
+<div class="demobar">
+  <span class="tag">Демо · кухни «Оливия»</span>
+  <div class="tabs" role="tablist" aria-label="Что показать">
+    <button role="tab" id="tab-site" aria-selected="true" aria-controls="view-site">Сайт</button>
+    <button role="tab" id="tab-app" aria-selected="false" aria-controls="view-app">Мини-приложение MAX</button>
+  </div>
+  <span class="note">Макет · фото-примеры, заменим на ваши работы</span>
+</div>
+
+<div id="view-site" role="tabpanel" aria-labelledby="tab-site">
+<div class="site">
+  <header class="hero">
+    <div class="bg" role="img" aria-label="Современная кухня с деревянными фасадами и островом"></div>
+    <div class="nav">
+      <div class="logo"><svg viewBox="0 0 200 300" width="20" height="30" aria-hidden="true"><path d="M100 18 C152 66 174 128 162 190 C152 240 122 262 100 272 C78 262 48 240 38 190 C26 128 48 66 100 18 Z" fill="#C9A46E"/><path d="M100 10 V111 M20 111 H180 M20 173 H180 M20 229 H180" stroke="#16170F" stroke-width="12"/></svg>ОЛИВИЯ</div>
+      <nav class="links" aria-label="Разделы"><a href="#s-styles">Стили</a><a href="#s-about">О нас</a><a href="#s-steps">Этапы</a><a href="#s-works">Работы</a><a href="#s-form">Замер</a></nav>
+      <span class="tel">8-914-142-62-82</span>
+    </div>
+    <div class="hero-in">
+      <span class="kicker">Чита · собственное производство</span>
+      <h1><span class="ln"><span>Кухни и мебель,</span></span><span class="ln"><span>сделанные <em>точно</em></span></span><span class="ln"><span>под ваш дом</span></span></h1>
+      <p class="lead">Проектируем, производим и собираем кухни, диваны, кресла и свет по индивидуальным размерам — с душой и теплом.</p>
+      <div class="ctas"><a class="btn b-brass" href="#s-form">Записаться на замер <span class="arr">→</span></a><button class="btn b-glass" type="button" data-go-app>Открыть в MAX</button></div>
+      <div class="badges"><span>Цена от производителя</span><span>Замер бесплатно</span><span>3D-проект в подарок</span></div>
+    </div>
+  </header>
+
+  <div class="ticker" aria-hidden="true"><div>
+    <span>Кухни <b>·</b></span><span>Диваны <b>·</b></span><span>Кресла <b>·</b></span><span>Стулья <b>·</b></span><span>Светильники <b>·</b></span><span>По вашим размерам <b>·</b></span>
+    <span>Кухни <b>·</b></span><span>Диваны <b>·</b></span><span>Кресла <b>·</b></span><span>Стулья <b>·</b></span><span>Светильники <b>·</b></span><span>По вашим размерам <b>·</b></span>
+  </div></div>
+
+  <section class="sec rv-in" id="s-styles">
+    <div class="head"><div><p class="eb">Стили кухонь</p><h2>Выберите <em>характер</em> кухни</h2></div><p>Каждую кухню проектируем под ваши размеры, бюджет и технику. Цена — от производителя.</p></div>
+    <div class="styles">
+      <a class="sty" href="#s-form"><div class="ph" style="background-image:var(--modern)"></div><h3>Модерн</h3><div class="meta"><span>от [___] ₽</span><span class="go">↗</span></div></a>
+      <a class="sty" href="#s-form"><div class="ph" style="background-image:var(--classic)"></div><h3>Классика</h3><div class="meta"><span>от [___] ₽</span><span class="go">↗</span></div></a>
+      <a class="sty" href="#s-form"><div class="ph" style="background-image:var(--loft)"></div><h3>Лофт</h3><div class="meta"><span>от [___] ₽</span><span class="go">↗</span></div></a>
+    </div>
+  </section>
+
+  <section class="sec rv-in" id="s-about">
+    <div class="about">
+      <div class="pic" role="img" aria-label="Кухня с открытыми полками и островом"><div class="stamp">Замер и 3D-проект<small>бесплатно, в удобное время</small></div></div>
+      <div>
+        <p class="eb">О салоне</p>
+        <h2>Делаем сами — <em>поэтому дешевле</em></h2>
+        <p style="color:var(--muted);margin-top:16px;max-width:46ch">Собственное производство в Чите: без посредников и наценок салонов. Шоурум на Бабушкина, 104 — приходите посмотреть материалы вживую.</p>
+        <div class="facts">
+          <div><b>Своё</b><span>производство</span></div>
+          <div><b>[__] лет</b><span>гарантия</span></div>
+          <div><b>[__]</b><span>материалы и фурнитура</span></div>
+          <div><b>Под ключ</b><span>доставка и сборка</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec rv-in" id="s-steps">
+    <div class="head"><div><p class="eb">Этапы работ</p><h2>От заявки до <em>первого ужина</em></h2></div></div>
+    <div class="timeline">
+      <div class="tl"><span class="n">1</span><h3>Заявка</h3><p>на сайте или в мессенджере</p></div>
+      <div class="tl"><span class="n">2</span><h3>Замер</h3><p>дизайнер приезжает бесплатно</p></div>
+      <div class="tl"><span class="n">3</span><h3>3D-проект</h3><p>видите кухню заранее</p></div>
+      <div class="tl"><span class="n">4</span><h3>Договор</h3><p>фиксируем цену и срок</p></div>
+      <div class="tl"><span class="n">5</span><h3>Производство</h3><p>на своём производстве</p></div>
+      <div class="tl"><span class="n">6</span><h3>Сборка</h3><p>доставка и монтаж под ключ</p></div>
+    </div>
+  </section>
+
+  <section class="sec rv-in" id="s-works">
+    <div class="head"><div><p class="eb">Наши работы</p><h2>Кухни и мебель <em>в домах Читы</em></h2></div><p>Фото — примеры для макета. Заменим на реальные работы салона.</p></div>
+    <div class="gallery">
+      <figure class="g tall"><div class="ph" style="background-image:var(--w1)"></div><figcaption><b>Светлая кухня с видом в сад</b>[район / ЖК] · [срок]</figcaption></figure>
+      <figure class="g wide"><div class="ph" style="background-image:var(--w3)"></div><figcaption><b>Гостиная с зелёным диваном</b>[район / ЖК]</figcaption></figure>
+      <figure class="g tall"><div class="ph" style="background-image:var(--w2)"></div><figcaption><b>Кухня с открытыми полками</b>[район / ЖК]</figcaption></figure>
+      <figure class="g"><div class="ph" style="background-image:var(--w5)"></div><figcaption><b>Кухня с островом</b>[район / ЖК]</figcaption></figure>
+      <figure class="g"><div class="ph" style="background-image:var(--w4)"></div><figcaption><b>Велюровый диван</b>[район / ЖК]</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="sec rv-in" id="s-reviews">
+    <div class="head"><div><p class="eb">Отзывы</p><h2>Что говорят <em>клиенты</em></h2></div></div>
+    <div class="reviews">
+      <div class="rv"><span class="q">“</span>Здесь будет реальный отзыв клиента с фото его кухни.<b>[Имя клиента]</b></div>
+      <div class="rv"><span class="q">“</span>Здесь будет реальный отзыв клиента с фото его кухни.<b>[Имя клиента]</b></div>
+      <div class="rv"><span class="q">“</span>Здесь будет реальный отзыв клиента с фото его кухни.<b>[Имя клиента]</b></div>
+    </div>
+  </section>
+
+  <section class="sec rv-in">
+    <div class="promo">
+      <div class="pr a"><p class="eb" style="color:var(--brass-2)">Акция</p><h3>Комплект под ключ: кухня + стулья + свет</h3><span class="pct">−[__]%</span></div>
+      <div class="pr b"><p class="eb" style="color:#16170F">Всегда</p><h3>Замер и 3D-проект бесплатно</h3><a class="btn b-olive" href="#s-form" style="align-self:flex-start">Записаться <span class="arr">→</span></a></div>
+    </div>
+  </section>
+
+  <section class="cta rv-in" id="s-form">
+    <div class="l">
+      <p class="eb" style="color:var(--brass-2)">Бесплатный замер</p>
+      <h2>Расскажите о вашей кухне — приедем и всё посчитаем</h2>
+      <form class="form" id="siteForm" novalidate>
+        <label for="f-name">Имя<input id="f-name" value="Анна"></label>
+        <label for="f-phone">Телефон<input id="f-phone" inputmode="tel" value="8-914-142-62-82"></label>
+        <div class="chips" id="f-what" aria-label="Что нужно"><button type="button" aria-pressed="true">Кухня</button><button type="button" aria-pressed="false">Диван</button><button type="button" aria-pressed="false">Кресла</button><button type="button" aria-pressed="false">Стулья</button><button type="button" aria-pressed="false">Свет</button></div>
+        <button class="btn b-brass" type="submit" style="justify-self:start">Записаться на замер <span class="arr">→</span></button>
+        <p class="ok" id="siteOk" hidden>Готово! В рабочей версии заявка сразу придёт Оле в Telegram или MAX. Это демо — ничего не отправлено.</p>
+      </form>
+    </div>
+    <div class="r" role="img" aria-label="Уютная гостиная с диваном"></div>
+  </section>
+
+  <footer class="foot">
+    <div><span class="big">ОЛИВИЯ</span><p style="margin-top:10px">Кухни и мебель на заказ.<br>С душой и теплом для Вас!</p></div>
+    <div><b>Контакты</b>г. Чита, Бабушкина, 104, 2 этаж<br>8-914-142-62-82<br>kuhni_olivia@mail.ru</div>
+    <div><b>Напишите нам</b><div class="mess"><span>Telegram</span><span>VK</span><span>MAX</span></div></div>
+  </footer>
+</div>
+</div>
+
+<div id="view-app" role="tabpanel" aria-labelledby="tab-app" hidden>
+<div class="appview">
+  <div class="appintro">
+    <p class="eb">Мини-приложение в MAX</p>
+    <h2>Салон «Оливия» <em>в кармане</em> у клиента</h2>
+    <p>Открывается из чат-бота салона в MAX, без установки. Нажимайте на плитки и кнопки в телефоне — всё работает.</p>
+    <div class="feat">
+      <div><b>Каталог</b>стили и цены «от»</div>
+      <div><b>Работы</b>реальные кухни салона</div>
+      <div><b>Акции</b>выгодные предложения</div>
+      <div><b>Запись</b>день и время замера</div>
+    </div>
+  </div>
+  <div class="device"><div class="screen">
+    <div class="abar">
+      <button class="back" id="aBack" aria-label="Назад" hidden>‹</button>
+      <span class="av" aria-hidden="true"><svg viewBox="0 0 200 300" width="14" height="21"><path d="M100 18 C152 66 174 128 162 190 C152 240 122 262 100 272 C78 262 48 240 38 190 C26 128 48 66 100 18 Z" fill="#C9A46E"/></svg></span>
+      <div><b>Оливия — кухни и мебель</b><small>● онлайн</small></div>
+    </div>
+    <div class="pages">
+      <div class="page" data-p="home">
+        <div class="ahero"><span class="pill">ЗАМЕР И 3D БЕСПЛАТНО</span><h3>Кухни и мебель по вашим размерам</h3></div>
+        <div class="tiles">
+          <button class="tile ph" style="background-image:var(--modern)" data-to="catalog"><small>КАТАЛОГ</small><span>Стили и цены</span></button>
+          <button class="tile ph" style="background-image:var(--w3)" data-to="works"><small>ПОРТФОЛИО</small><span>Наши работы</span></button>
+          <button class="tile ph" style="background-image:var(--w5)" data-to="promo"><small>ВЫГОДНО</small><span>Акции</span></button>
+          <button class="tile t-brass" data-to="book"><small>БЕСПЛАТНО</small><span>Записаться на замер</span></button>
+        </div>
+      </div>
+      <div class="page" data-p="catalog" data-off>
+        <div class="acard" style="background-image:var(--modern)"><b>Модерн</b><span>от [___] ₽</span></div>
+        <div class="acard" style="background-image:var(--classic)"><b>Классика</b><span>от [___] ₽</span></div>
+        <div class="acard" style="background-image:var(--loft)"><b>Лофт</b><span>от [___] ₽</span></div>
+        <button class="abtn" data-to="book">Узнать цену под мои размеры</button>
+      </div>
+      <div class="page" data-p="works" data-off>
+        <div class="acard" style="background-image:var(--w1);min-height:220px"><b>Светлая кухня</b><span>[район / ЖК]</span></div>
+        <div class="acard" style="background-image:var(--w3)"><b>Гостиная с диваном</b><span>[район / ЖК]</span></div>
+        <div class="acard" style="background-image:var(--w2)"><b>Кухня с полками</b><span>[район / ЖК]</span></div>
+        <button class="abtn" data-to="book">Хочу так же</button>
+      </div>
+      <div class="page" data-p="promo" data-off>
+        <div class="prm a"><h4>Комплект под ключ</h4><p style="font-size:13px">Кухня + стулья + свет — скидка [__]%</p></div>
+        <div class="prm b"><h4>Замер и 3D бесплатно</h4><p style="font-size:13px">Дизайнер приедет в удобное время</p></div>
+        <div class="acard" style="background-image:var(--w4)"><b>Диваны по размеру</b><span>ткань и цвет на выбор</span></div>
+        <button class="abtn" data-to="book">Записаться</button>
+      </div>
+      <div class="page" data-p="book" data-off>
+        <label class="field" for="a-name">Имя<input id="a-name" value="Анна"></label>
+        <label class="field" for="a-phone">Телефон<input id="a-phone" inputmode="tel" value="8-914-142-62-82"></label>
+        <div class="field">Что нужно<div class="chips" id="a-what"><button type="button" aria-pressed="true">Кухня</button><button type="button" aria-pressed="false">Диван</button><button type="button" aria-pressed="false">Свет</button></div></div>
+        <div class="field">День замера<div class="chips" id="a-day"><button type="button" aria-pressed="false">Пт</button><button type="button" aria-pressed="true">Сб</button><button type="button" aria-pressed="false">Пн</button><button type="button" aria-pressed="false">Вт</button></div></div>
+        <div class="field">Время<div class="chips" id="a-time"><button type="button" aria-pressed="false">10:00</button><button type="button" aria-pressed="true">14:00</button><button type="button" aria-pressed="false">18:00</button></div></div>
+        <button class="abtn" id="aSend">Записаться на замер</button>
+      </div>
+      <div class="page" data-p="done" data-off>
+        <div class="done">
+          <div class="check"><svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="#F4EFE4" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg></div>
+          <b style="font-size:20px">Вы записаны!</b>
+          <p style="font-size:14px;color:var(--muted)" id="doneText">Суббота, 14:00. Оля свяжется с вами для подтверждения.</p>
+          <p style="font-size:11px;color:var(--muted)">Демо: заявка никуда не отправлена</p>
+          <button class="abtn" data-to="home" style="width:100%">На главную</button>
+        </div>
+      </div>
+    </div>
+    <nav class="tabbar" aria-label="Разделы приложения">
+      <button data-to="home" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-7 9 7v9H3z"/></svg>Главная</button>
+      <button data-to="catalog"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Каталог</button>
+      <button data-to="works"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 16l5-5 4 4 3-3 6 6"/></svg>Работы</button>
+      <button data-to="book"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>Замер</button>
+    </nav>
+  </div></div>
+</div>
+</div>
+
+<script>
+(function(){
+  var tabSite=document.getElementById('tab-site'), tabApp=document.getElementById('tab-app');
+  var vSite=document.getElementById('view-site'), vApp=document.getElementById('view-app');
+  function show(w){var a=w==='app';vSite.hidden=a;vApp.hidden=!a;tabSite.setAttribute('aria-selected',String(!a));tabApp.setAttribute('aria-selected',String(a));try{history.replaceState(null,'','#'+(a?'app':'site'))}catch(e){}}
+  tabSite.onclick=function(){show('site')};tabApp.onclick=function(){show('app')};
+  document.querySelectorAll('[data-go-app]').forEach(function(b){b.onclick=function(){show('app');window.scrollTo({top:0,behavior:'smooth'})}});
+  if(location.hash==='#app')show('app');
+  document.querySelectorAll('.chips').forEach(function(g){g.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;g.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed','false')});b.setAttribute('aria-pressed','true')})});
+  document.getElementById('siteForm').addEventListener('submit',function(e){e.preventDefault();document.getElementById('siteOk').hidden=false});
+  var stack=['home'],back=document.getElementById('aBack');
+  function go(p,push){document.querySelectorAll('.page').forEach(function(el){if(el.dataset.p===p)el.removeAttribute('data-off');else el.setAttribute('data-off','')});
+    document.querySelectorAll('.tabbar button').forEach(function(b){if(b.dataset.to===p)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')});
+    if(push!==false){if(p==='home')stack=['home'];else stack.push(p)}back.hidden=(p==='home')}
+  document.querySelector('.screen').addEventListener('click',function(e){var t=e.target.closest('[data-to]');if(t)go(t.dataset.to)});
+  back.onclick=function(){stack.pop();go(stack[stack.length-1]||'home',false)};
+  document.getElementById('aSend').onclick=function(){var d=document.querySelector('#a-day [aria-pressed="true"]'),t=document.querySelector('#a-time [aria-pressed="true"]');var n={'Пт':'Пятница','Сб':'Суббота','Пн':'Понедельник','Вт':'Вторник'};document.getElementById('doneText').textContent=(n[d.textContent]||d.textContent)+', '+t.textContent+'. Оля свяжется с вами для подтверждения.';go('done')};
+})();
+</script>
+
+</body></html>
