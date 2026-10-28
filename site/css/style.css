@@ -61,7 +61,11 @@ button{font:inherit;cursor:pointer;color:inherit}
 .menu a:hover{opacity:1}
 .menu a:hover::after{transform:scaleX(1)}
 .menu .menu-tel{display:none}
-.tel{font-weight:800;text-decoration:none;font-variant-numeric:tabular-nums;white-space:nowrap}
+/* Номер в шапке: белая «таблетка» с трубкой — читается поверх фото hero */
+.tel{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px;border-radius:999px;background:rgba(255,255,255,.92);border:1px solid var(--line);box-shadow:0 6px 18px rgba(0,0,0,.08);color:var(--olive-3);font-size:17px;font-weight:800;text-decoration:none;font-variant-numeric:tabular-nums;letter-spacing:.01em;white-space:nowrap;transition:background .25s,color .25s,border-color .25s}
+.tel svg{flex:none;color:var(--olive)}
+.tel:hover{background:var(--olive);border-color:var(--olive);color:#fff}
+.tel:hover svg{color:#fff}
 .burger{display:none;width:44px;height:44px;border:0;background:transparent;margin-left:auto;position:relative}
 .burger span{position:absolute;left:11px;right:11px;height:2px;background:var(--ink);border-radius:2px;transition:transform .3s,opacity .3s}
 .burger span:nth-child(1){top:15px}.burger span:nth-child(2){top:21px}.burger span:nth-child(3){top:27px}
@@ -273,8 +277,9 @@ button{font:inherit;cursor:pointer;color:inherit}
 @media (max-width:900px){
   :root{--header:64px}
   .brand img{height:44px}
-  .tel{display:none}
-  .burger{display:block}
+  .top-in{gap:10px}
+  .tel{margin-left:auto;min-height:40px;padding:0 12px;font-size:15px;gap:6px}
+  .burger{display:block;margin-left:0}
   .menu{position:fixed;inset:var(--header) 0 0;overflow-y:auto;flex-direction:column;gap:0;background:var(--paper);padding:8px var(--gut) 20px;box-shadow:0 20px 30px rgba(0,0,0,.12);transform:translateY(-12px);opacity:0;visibility:hidden;transition:opacity .25s,transform .25s,visibility .25s;font-size:18px}
   .menu.open{opacity:1;transform:none;visibility:visible}
   .menu a{padding:14px 0;border-bottom:1px solid var(--line)}
@@ -319,4 +324,10 @@ button{font:inherit;cursor:pointer;color:inherit}
   html{scroll-behavior:auto}
   *,*::before,*::after{animation:none!important;transition:none!important}
   .reveal{opacity:1;transform:none}
+}
+
+/* Совсем узкие экраны: в шапке только круглая кнопка с трубкой */
+@media (max-width:359px){
+  .tel{width:40px;padding:0;justify-content:center}
+  .tel span{display:none}
 }
