@@ -246,8 +246,30 @@
         </div>
         <a class="btn btn-olive" href="https://2gis.ru/chita/directions/points/%7C113.493581%2C52.042679%3B70000001117156105" target="_blank" rel="noopener">Построить маршрут <span class="arr" aria-hidden="true">→</span></a>
       </div>
-      <!-- Карта 2ГИС с карточкой салона (id 70000001117156105: отзывы, фото, часы работы) -->
-      <div class="map"><iframe title="Салон «Оливия» на карте 2ГИС" loading="lazy" src="https://widgets.2gis.com/widget?type=firmsonmap&amp;options=%7B%22pos%22%3A%7B%22lat%22%3A52.042679%2C%22lon%22%3A113.493581%2C%22zoom%22%3A16%7D%2C%22opt%22%3A%7B%22city%22%3A%22chita%22%7D%2C%22org%22%3A%2270000001117156105%22%7D"></iframe></div>
+      <!-- Карта 2ГИС с карточкой салона (id 70000001117156105). На телефонах виджет 2ГИС без API-ключа
+           показывает пустую карту, поэтому там вместо неё карточка со ссылкой в приложение 2ГИС. -->
+      <div class="map" id="map">
+        <iframe title="Салон «Оливия» на карте 2ГИС" data-src="https://widgets.2gis.com/widget?type=firmsonmap&amp;options=%7B%22pos%22%3A%7B%22lat%22%3A52.042679%2C%22lon%22%3A113.493581%2C%22zoom%22%3A16%7D%2C%22opt%22%3A%7B%22city%22%3A%22chita%22%7D%2C%22org%22%3A%2270000001117156105%22%7D"></iframe>
+        <a class="map-card" href="https://2gis.ru/chita/firm/70000001117156105" target="_blank" rel="noopener">
+          <span class="map-pin" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.6"/></svg></span>
+          <span class="eb">Мы в 2ГИС</span>
+          <b>Оливия — мебельная компания</b>
+          <span class="map-rate"><span aria-hidden="true">★★★★★</span> 5,0 в 2ГИС</span>
+          <span>ТЦ «Караван», ул. Бабушкина, 104, 2 этаж</span>
+          <span>Ежедневно 10:00 – 19:00</span>
+          <span class="btn btn-olive">Открыть в 2ГИС: фото и отзывы <span class="arr" aria-hidden="true">→</span></span>
+        </a>
+      </div>
+      <script>
+        /* Карту грузим только на компьютере; на телефонах остаётся карточка */
+        (function () {
+          var f = document.querySelector('#map iframe');
+          if (window.matchMedia('(min-width: 901px) and (pointer: fine)').matches) {
+            f.src = f.dataset.src;
+            document.getElementById('map').classList.add('has-map');
+          }
+        })();
+      </script>
     </div>
   </section>
 </main>

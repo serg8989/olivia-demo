@@ -27,9 +27,13 @@ a{color:inherit}
 .av{width:38px;height:38px;border-radius:50%;background:var(--olive);display:flex;align-items:center;justify-content:center;flex:none}
 .av img{width:25px;height:auto}
 .bar-t{flex:1;min-width:0}
-.bar-logo{height:30px;width:auto}
+.bar-logo{height:30px;width:auto;max-width:100%;object-fit:contain;object-position:left center}
 .bar-t small{display:block;font-size:11px;font-weight:700;color:var(--olive-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.bar-call{width:40px;height:40px;border-radius:50%;background:var(--olive-l);color:var(--olive-2);display:flex;align-items:center;justify-content:center;flex:none}
+/* Звонок: номер цифрами на оливковой «таблетке» — сразу видно, куда звонить */
+.bar-call{height:40px;padding:0 12px;border-radius:999px;background:var(--olive);color:#fff;display:flex;align-items:center;justify-content:center;gap:6px;flex:none;font-size:14px;font-weight:800;font-variant-numeric:tabular-nums;white-space:nowrap;text-decoration:none;box-shadow:0 4px 12px rgba(76,102,64,.25)}
+.bar-call svg{width:17px;height:17px}
+/* Узкие экраны: только круглая кнопка с трубкой, чтобы не теснить логотип */
+@media (max-width:359px){.bar-call{width:40px;padding:0}.bar-call span{display:none}}
 
 /* Страницы */
 .pages{flex:1;position:relative;overflow:hidden}
