@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<title>Оливия — кухни и мебель</title>
+<meta name="theme-color" content="#F5F5F3">
+<link rel="icon" type="image/png" href="img/favicon.png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Manrope:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="css/app.css">
+<!-- MAX Bridge: даёт window.WebApp внутри MAX. Вне MAX приложение работает как обычный сайт. -->
+<script src="https://st.max.ru/js/max-web-app.js"></script>
+</head>
+<body>
+<div class="app" id="app">
+
+  <header class="bar">
+    <button class="back" id="back" aria-label="Назад" hidden>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+    </button>
+    <span class="av" aria-hidden="true"><img src="img/monogram.png" alt=""></span>
+    <div class="bar-t">
+      <img src="img/logo-dark.png" alt="Оливия — кухни и мебель" class="bar-logo">
+      <small id="hello">Кухни и корпусная мебель</small>
+    </div>
+    <a class="bar-call" href="tel:+79141426282" aria-label="Позвонить: 8-914-142-62-82">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2"/></svg>
+    </a>
+  </header>
+
+  <main class="pages" id="pages">
+
+    <!-- ГЛАВНАЯ -->
+    <section class="page" data-page="home" aria-label="Главная">
+      <div class="hero">
+        <span class="pill">Замер и 3D бесплатно</span>
+        <h1>Кухни и мебель <em>по вашим размерам</em></h1>
+        <button class="btn btn-white" data-go="book">Записаться на замер</button>
+      </div>
+      <div class="tiles">
+        <button class="tile" data-go="catalog" style="background-image:url(img/style-modern.webp)"><small>Каталог</small><b>Стили и цены</b></button>
+        <button class="tile" data-go="works" style="background-image:url(img/work-2.webp)"><small>Портфолио</small><b>Наши работы</b></button>
+        <button class="tile" data-go="promo" style="background-image:url(img/kupe.webp)"><small>Выгодно</small><b>Акции</b></button>
+        <button class="tile tile-olive" data-go="book"><small>Бесплатно</small><b>Записаться на замер</b></button>
+      </div>
+      <div class="dirs">
+        <p class="eb">Что мы делаем</p>
+        <div class="dir-row">
+          <button data-go="book" data-service="Кухня"><img src="img/work-3.webp" alt="" loading="lazy"><span>Кухни</span></button>
+          <button data-go="book" data-service="Шкаф-купе"><img src="img/kupe.webp" alt="" loading="lazy"><span>Шкафы-купе</span></button>
+          <button data-go="book" data-service="Гардеробная"><img src="img/wardrobe.webp" alt="" loading="lazy"><span>Гардеробные</span></button>
+          <button data-go="book" data-service="Прихожая"><img src="img/hallway.webp" alt="" loading="lazy"><span>Прихожие</span></button>
+        </div>
+      </div>
+      <div class="info">
+        <div><b>Фабрики-партнёры</b><span>цена от производителя</span></div>
+        <div><b>Шоурум</b><span>Бабушкина, 104, 2 эт.</span></div>
+      </div>
+    </section>
+
+    <!-- КАТАЛОГ -->
+    <section class="page" data-page="catalog" aria-label="Каталог" hidden>
+      <h2 class="ttl">Стили <em>кухонь</em></h2>
+      <p class="sub">Проектируем под ваши размеры, бюджет и технику.</p>
+      <button class="card" data-go="book" data-service="Кухня" style="background-image:url(img/style-modern.webp)"><b>Модерн</b><span>от [___] ₽</span></button>
+      <button class="card" data-go="book" data-service="Кухня" style="background-image:url(img/style-classic.webp)"><b>Классика</b><span>от [___] ₽</span></button>
+      <button class="card" data-go="book" data-service="Кухня" style="background-image:url(img/style-loft.webp)"><b>Лофт</b><span>от [___] ₽</span></button>
+      <h2 class="ttl" style="margin-top:8px">Корпусная <em>мебель</em></h2>
+      <div class="mini">
+        <button data-go="book" data-service="Шкаф-купе" style="background-image:url(img/kupe.webp)"><b>Шкафы-купе</b></button>
+        <button data-go="book" data-service="Гардеробная" style="background-image:url(img/wardrobe.webp)"><b>Гардеробные</b></button>
+        <button data-go="book" data-service="Прихожая" style="background-image:url(img/hallway.webp)"><b>Прихожие</b></button>
+        <button data-go="book" data-service="Другое" class="mini-olive"><b>Встроенная мебель</b></button>
+      </div>
+      <button class="btn btn-olive btn-block" data-go="book">Узнать цену под мои размеры</button>
+    </section>
+
+    <!-- РАБОТЫ -->
+    <section class="page" data-page="works" aria-label="Наши работы" hidden>
+      <h2 class="ttl">Наши <em>работы</em></h2>
+      <p class="sub">Реальные проекты салона. Нажмите, чтобы рассмотреть.</p>
+      <div class="works" id="works">
+        <button class="w w-big" data-full="img/work-4.webp"><img src="img/work-4.webp" alt="Кухня: дерево и мрамор" loading="lazy"><span>Дерево и мрамор</span></button>
+        <button class="w w-tall" data-full="img/work-1.webp"><img src="img/work-1.webp" alt="Кухня с колонной под технику" loading="lazy"><span>Колонна под технику</span></button>
+        <button class="w" data-full="img/work-2.webp"><img src="img/work-2.webp" alt="Угловая кухня с подсветкой" loading="lazy"><span>С подсветкой</span></button>
+        <button class="w" data-full="img/work-3.webp"><img src="img/work-3.webp" alt="Рабочий угол с мойкой" loading="lazy"><span>Угол с мойкой</span></button>
+      </div>
+      <button class="btn btn-olive btn-block" data-go="book">Хочу так же</button>
+    </section>
+
+    <!-- АКЦИИ -->
+    <section class="page" data-page="promo" aria-label="Акции" hidden>
+      <h2 class="ttl">Акции</h2>
+      <div class="promo promo-dark"><small>Комплект под ключ</small><b>Кухня + шкаф или прихожая</b><span class="pct">−[__]%</span></div>
+      <div class="promo promo-olive"><small>Всегда</small><b>Замер и 3D-проект бесплатно</b><span>Дизайнер приедет в удобное время</span></div>
+      <button class="card" data-go="book" data-service="Гардеробная" style="background-image:url(img/wardrobe.webp)"><b>Гардеробные</b><span>по вашим размерам</span></button>
+      <button class="btn btn-olive btn-block" data-go="book">Записаться</button>
+    </section>
+
+    <!-- ЗАПИСЬ -->
+    <section class="page" data-page="book" aria-label="Запись на замер" hidden>
+      <h2 class="ttl">Запись <em>на замер</em></h2>
+      <p class="sub">Бесплатно. Оля перезвонит и подтвердит время.</p>
+      <form class="form" id="bookForm" novalidate>
+        <label class="field">Имя<input name="name" autocomplete="name" placeholder="Как к вам обращаться" required></label>
+        <div class="field">Телефон
+          <div class="phone-row">
+            <input name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7 (___) ___-__-__" required>
+            <button type="button" class="share" id="sharePhone" hidden>Из MAX</button>
+          </div>
+        </div>
+        <fieldset class="chips"><legend>Что нужно</legend>
+          <label><input type="radio" name="service" value="Кухня" checked><span>Кухня</span></label>
+          <label><input type="radio" name="service" value="Шкаф-купе"><span>Шкаф-купе</span></label>
+          <label><input type="radio" name="service" value="Гардеробная"><span>Гардеробная</span></label>
+          <label><input type="radio" name="service" value="Прихожая"><span>Прихожая</span></label>
+          <label><input type="radio" name="service" value="Другое"><span>Другое</span></label>
+        </fieldset>
+        <fieldset class="chips"><legend>День замера</legend><div class="day-row" id="days"></div></fieldset>
+        <fieldset class="chips" id="times"><legend>Время</legend>
+          <label><input type="radio" name="time" value="10:00"><span>10:00</span></label>
+          <label><input type="radio" name="time" value="12:00"><span>12:00</span></label>
+          <label><input type="radio" name="time" value="14:00" checked><span>14:00</span></label>
+          <label><input type="radio" name="time" value="16:00"><span>16:00</span></label>
+          <label><input type="radio" name="time" value="18:00"><span>18:00</span></label>
+        </fieldset>
+        <label class="field">Комментарий<textarea name="comment" rows="2" placeholder="Размеры, пожелания"></textarea></label>
+        <label class="consent"><input type="checkbox" name="consent" checked required><span>Согласен(на) на обработку персональных данных</span></label>
+        <p class="err" id="bookErr" role="alert"></p>
+        <button class="btn btn-olive btn-block" type="submit" id="bookBtn">Записаться на замер</button>
+      </form>
+    </section>
+
+    <!-- ГОТОВО -->
+    <section class="page" data-page="done" aria-label="Заявка принята" hidden>
+      <div class="done">
+        <div class="check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg></div>
+        <h2>Вы записаны!</h2>
+        <p id="doneText">Оля свяжется с вами для подтверждения.</p>
+        <button class="btn btn-olive btn-block" data-go="home">На главную</button>
+        <a class="btn btn-line btn-block" href="tel:+79141426282">Позвонить: 8-914-142-62-82</a>
+      </div>
+    </section>
+  </main>
+
+  <nav class="tabbar" aria-label="Разделы">
+    <button data-go="home" aria-current="page"><svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9a1 1 0 01-1 1h-5v-6h-6v6H4a1 1 0 01-1-1z"/></svg>Главная</button>
+    <button data-go="catalog"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Каталог</button>
+    <button data-go="works"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 16l5-5 4 4 3-3 6 6"/></svg>Работы</button>
+    <button data-go="book"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>Замер</button>
+  </nav>
+
+  <div class="viewer" id="viewer" hidden>
+    <button class="viewer-x" id="viewerX" aria-label="Закрыть">×</button>
+    <img id="viewerImg" alt="">
+  </div>
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
