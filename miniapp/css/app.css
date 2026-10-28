@@ -105,7 +105,7 @@ a{color:inherit}
 .mini .mini-olive::before{display:none}
 
 /* Работы */
-.works{display:grid;grid-template-columns:1fr 1fr;grid-auto-rows:150px;gap:10px;flex:none}
+.works{display:grid;grid-template-columns:1fr 1fr;grid-auto-rows:150px;grid-auto-flow:dense;gap:10px;flex:none}
 .w{position:relative;border-radius:16px;overflow:hidden;background:#ddd}
 .w img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .w span{position:absolute;left:8px;bottom:8px;right:8px;background:rgba(245,245,243,.93);color:var(--ink);border-radius:10px;padding:6px 10px;font-size:12px;font-weight:700;text-align:left}
